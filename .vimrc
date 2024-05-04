@@ -1,6 +1,12 @@
 " Enable UTF-8 encoding
 set encoding=utf-8
 
+" Colorscheme
+color desert 
+
+" Font
+set guifont=Cascadia_Mono:h24
+
 " Enable 256 colors
 set t_Co=256
 
@@ -32,11 +38,18 @@ set expandtab
 " Set maximum text width to 120 characters
 set textwidth=120
 
-" Highlight the current line
+" Highlight the current line and column
 set cursorline
+set cursorcolumn
+
+" Cursor location
+set ruler
 
 " Comments settings
 set comments=sl:/*,mb:\ *,elx:\ */
+
+" Terminal window settings
+"set termwinsize=20x200
 
 " C/C++ specific settings
 filetype plugin indent on
