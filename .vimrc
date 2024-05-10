@@ -76,7 +76,7 @@ endfunction
 filetype plugin indent on
 set cindent                  " Enable automatic C indentation
 set cino=g0                  " C-indentation style
-autocmd FileType c,cpp,cc,go setlocal colorcolumn=120 colorcolumn=+2 " Set a vertical line at column 80
+autocmd FileType c,cpp,cc,go setlocal colorcolumn=120 colorcolumn=+2 " Set a vertical line at column 120
 highlight ColorColumn ctermbg=yellow guibg=#ffc300
 
 " General coding settings
