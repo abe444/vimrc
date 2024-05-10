@@ -45,11 +45,32 @@ set cursorcolumn
 " Cursor location
 set ruler
 
-" Comments settings
-set comments=sl:/*,mb:\ *,elx:\ */
+" LSP plugin setup
+function InitLspPlugins()
+	call plug#begin()
+
+	Plug 'prabirshrestha/vim-lsp'
+	Plug 'mattn/vim-lsp-settings'
+
+	call plug#end()
+endfunction
+
+call InitLspPlugins()
+
+function g:StartLsp()
+	function! OnLspBufferEnabled() abort
+	    setlocal omnifunc=lsp#complete
+	endfunction
+	
+	augroup lsp_install
+	  au!
+	  autocmd User lsp_buffer_enabled call OnLspBufferEnabled()
+	augroup END
+
+endfunction
 
 " Terminal window settings
-"set termwinsize=20x200
+" set termwinsize=20x200
 
 " C/C++ specific settings
 filetype plugin indent on
