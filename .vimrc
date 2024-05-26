@@ -2,7 +2,7 @@
 set encoding=utf-8
 
 " Colorscheme
-color desert 
+color retrobox 
 
 " Font
 set guifont=Cascadia_Mono:h24
@@ -60,24 +60,36 @@ call InitLspPlugins()
 function g:StartLsp()
 	function! OnLspBufferEnabled() abort
 	    setlocal omnifunc=lsp#complete
+        setlocal signcolumn=yes
 	endfunction
 	
 	augroup lsp_install
 	  au!
-	  autocmd User lsp_buffer_enabled call OnLspBufferEnabled()
+      autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
 	augroup END
 
 endfunction
 
 " Terminal window settings
-" set termwinsize=20x200
+set termwinsize=20x100
 
 " C/C++ specific settings
 filetype plugin indent on
 set cindent                  " Enable automatic C indentation
 set cino=g0                  " C-indentation style
-autocmd FileType c,cpp,cc,go setlocal colorcolumn=120 colorcolumn=+2 " Set a vertical line at column 120
+autocmd FileType c,cpp,cc,go setlocal colorcolumn=120 colorcolumn=+2 " Set a vertical line at column 80
 highlight ColorColumn ctermbg=yellow guibg=#ffc300
+
+" File tree
+filetype plugin on
+let g:netrw_banner = 0        " Disable the banner
+let g:netrw_liststyle = 3     " Use a tree-like listing style
+let g:netrw_browse_split = 4  " Open files in a new vertical split
+let g:netrw_altv = 1          " Open splits to the right
+let g:netrw_winsize = 25      " Set the width of the explorer window
+
+nnoremap <leader>e :Explore<CR>
+nnoremap <leader>s :Sexplore<CR>
 
 " General coding settings
 set wildmenu                " Enable auto-completion in command mode
